@@ -159,7 +159,7 @@ public class PlayerController : MonoBehaviour
 
         if (health <= 0)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            ///SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         if (attackAction.triggered)
@@ -210,8 +210,9 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.name == "PortalFX_V2")//TEMPORARY CODE: If the player collides with the portal, the cave scene starts.
         {
-            SceneTransitionController.Instance.LoadSpecificSceneString("Cave Scene");
+            //SceneTransitionController.Instance.LoadSpecificSceneString("Cave Scene");
             //SceneManager.LoadScene("Cave Scene");
+            GameManager.Instance.SceneManager.LoadScene("Cave Scene", LoadSceneMode.Single);
         }
     }
 
@@ -241,7 +242,8 @@ public class PlayerController : MonoBehaviour
         healthBar.fillAmount = health / 10f;
         if (health <= 0)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            ///SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            GameManager.Instance.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name, LoadSceneMode.Single);
             Destroy(gameObject);
         }
     }

@@ -112,13 +112,13 @@ public class PortalMenuController : MonoBehaviour
         PlayerPrefs.SetInt("isPortalUsed", 1);
         PlayerPrefs.SetString("currentPortal", portalName);
 
-        SceneManager.UnloadSceneAsync("Portal UI");
+        ///SceneManager.UnloadSceneAsync("Portal UI");
 
         StopAllCoroutines();
         Time.timeScale = 1;
         escape.performed -= EscapeFunction;
 
-        SceneManager.LoadScene(sceneName);
+        ///SceneManager.LoadScene(sceneName);
     }
 
     IEnumerator LoadMenu()
@@ -174,6 +174,6 @@ public class PortalMenuController : MonoBehaviour
 
         Time.timeScale = 1;
 
-        SceneManager.UnloadSceneAsync("Portal UI");
+        ///SceneManager.UnloadSceneAsync("Portal UI");
     }
 }
