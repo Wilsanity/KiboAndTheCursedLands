@@ -7,7 +7,8 @@ public class UIManager : MonoBehaviour
     #region Main Menu Functions
     public void StartNewGame()
     {
-        GameManager.Instance.SceneManager.LoadScene(GameManager.Instance.tutorialSceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
+        //GameManager.Instance.SceneManager.LoadScene(GameManager.Instance.tutorialSceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
+        GameManager.Instance.SceneManager.LoadSceneWithTransition(GameManager.Instance.tutorialSceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
     }
 
     public void ContinueLastGame()

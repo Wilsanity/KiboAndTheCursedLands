@@ -66,7 +66,7 @@ public class SceneManager : MonoBehaviour
     {
         fadeAnimation.Stop();
 
-        if (fadeAnimation != null && fadeOutClip != null)
+        if (fadeAnimation != null && fadeInClip != null)
         {
             fadeAnimation.clip = fadeInClip;
             fadeAnimation.Play();
