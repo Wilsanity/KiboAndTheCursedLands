@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class PlayerData : ScriptableObject
+[System.Serializable]
+public class PlayerData
 {
     public float health;
 
