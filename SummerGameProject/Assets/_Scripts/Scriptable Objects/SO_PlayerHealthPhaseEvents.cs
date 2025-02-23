@@ -28,7 +28,7 @@ public class SO_PlayerHealthPhaseEvents : SO_BaseUnitPhaseEvent
     public override void DefeatedLogic()
     {
         base.DefeatedLogic();
-        ///SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        GameManager.Instance.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name, LoadSceneMode.Single);
         Destroy(unitAssigned);
     }
 }

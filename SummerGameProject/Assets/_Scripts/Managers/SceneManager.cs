@@ -8,6 +8,7 @@ public class SceneManager : MonoBehaviour
     [SerializeField] private Animation fadeAnimation;
     [SerializeField] private AnimationClip fadeInClip;
     [SerializeField] private AnimationClip fadeOutClip;
+    public string currentSceneName;
 
     private void OnEnable()
     {
@@ -25,6 +26,8 @@ public class SceneManager : MonoBehaviour
         {
             fadeAnimation.clip = fadeInClip;
             fadeAnimation.Play();
+
+            currentSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
         }
     }
 
