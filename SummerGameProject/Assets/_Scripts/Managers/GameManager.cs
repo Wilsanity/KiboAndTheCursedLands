@@ -12,6 +12,8 @@ public class GameManager : AdvancedFSM
     public AudioManager AudioManager { get; private set; }
     //public EnemyManager EnemyManager { get; private set; }
 
+    public PlayerData playerData;
+
 
     [Space]
     [Title("Audio", TextAlignment.Left, TextColour.White, 20)]
@@ -59,6 +61,8 @@ public class GameManager : AdvancedFSM
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        InitializePlayerData();
 
         // Initialize managers
         UIManager = GetComponentInChildren<UIManager>();
@@ -136,6 +140,16 @@ public class GameManager : AdvancedFSM
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    private void InitializePlayerData()
+    {
+        playerData = new PlayerData(100f); // Default values
+    }
+
+    public void SavePlayerData(float health)
+    {
+        playerData.health = health;
     }
 }
 

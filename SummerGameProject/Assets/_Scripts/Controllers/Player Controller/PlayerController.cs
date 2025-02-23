@@ -132,6 +132,8 @@ public class PlayerController : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        LoadPlayerData();
     }
 
     private void OnDisable()
@@ -139,7 +141,7 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-
+        SavePlayerData();
     }
 
     private void Update()
@@ -403,7 +405,25 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void LoadPlayerData()
+    {
+        if (GameManager.Instance != null && GameManager.Instance.playerData != null)
+        {
+            health = GameManager.Instance.playerData.health;
 
+            // Apply health to player UI, stats, etc.
+            Debug.Log($"Player Loaded: Health = {health}");
+        }
+    }
+
+    private void SavePlayerData()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.SavePlayerData(health);
+            Debug.Log("Player Data Saved.");
+        }
+    }
 
     // legacy code
     //This is when the player attacks the cave plant enemies. This is a temporary solution since using an array caused them collectively to die
