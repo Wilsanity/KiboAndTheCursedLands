@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-public class NPC : MonoBehaviour
+public class NPCDialogue : MonoBehaviour
 {
     //Member variables
     private int m_Id;
