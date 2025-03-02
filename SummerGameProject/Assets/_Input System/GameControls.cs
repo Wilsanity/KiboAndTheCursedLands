@@ -91,9 +91,9 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Lock In"",
+                    ""name"": ""Climb"",
                     ""type"": ""Button"",
-                    ""id"": ""4a2ebc13-36f4-4ae9-8ab8-306fb22de956"",
+                    ""id"": ""0f3c68f1-41f5-467c-92c8-5b8fef84efdc"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -233,12 +233,12 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""90da28dc-a295-4890-b948-7cdd356d6505"",
-                    ""path"": ""<Keyboard>/t"",
+                    ""id"": ""202ae53a-549b-44f8-b0e1-b9f786e6fb4d"",
+                    ""path"": ""<Keyboard>/c"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard And Mouse"",
-                    ""action"": ""Lock In"",
+                    ""groups"": """",
+                    ""action"": ""Climb"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -385,7 +385,7 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
         m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
-        m_Player_LockIn = m_Player.FindAction("Lock In", throwIfNotFound: true);
+        m_Player_Climb = m_Player.FindAction("Climb", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         // PlayerUI
         m_PlayerUI = asset.FindActionMap("PlayerUI", throwIfNotFound: true);
@@ -460,7 +460,7 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Dodge;
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_Interact;
-    private readonly InputAction m_Player_LockIn;
+    private readonly InputAction m_Player_Climb;
     private readonly InputAction m_Player_Pause;
     public struct PlayerActions
     {
@@ -473,7 +473,7 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
         public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
-        public InputAction @LockIn => m_Wrapper.m_Player_LockIn;
+        public InputAction @Climb => m_Wrapper.m_Player_Climb;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -505,9 +505,9 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
-            @LockIn.started += instance.OnLockIn;
-            @LockIn.performed += instance.OnLockIn;
-            @LockIn.canceled += instance.OnLockIn;
+            @Climb.started += instance.OnClimb;
+            @Climb.performed += instance.OnClimb;
+            @Climb.canceled += instance.OnClimb;
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
@@ -536,9 +536,9 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
-            @LockIn.started -= instance.OnLockIn;
-            @LockIn.performed -= instance.OnLockIn;
-            @LockIn.canceled -= instance.OnLockIn;
+            @Climb.started -= instance.OnClimb;
+            @Climb.performed -= instance.OnClimb;
+            @Climb.canceled -= instance.OnClimb;
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
@@ -639,7 +639,7 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
         void OnDodge(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
-        void OnLockIn(InputAction.CallbackContext context);
+        void OnClimb(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
     }
     public interface IPlayerUIActions
