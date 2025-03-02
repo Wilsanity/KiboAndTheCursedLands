@@ -76,7 +76,7 @@ public class PlayersMetric : MonoBehaviour
             stats += $"isJumping: {playerController.CheckForJumping()}\n";
         }
     
-        statsText.text = stats;
+        if(statsText != null) statsText.text = stats;
     }
    
     private  Vector3 GetVelocity()

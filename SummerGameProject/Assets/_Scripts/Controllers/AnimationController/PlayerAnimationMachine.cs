@@ -47,6 +47,17 @@ public class PlayerAnimationMachine : MonoBehaviour
                 _animator.SetTrigger("AirDodge");
                 return;
 
+            case PlayerAnimState.BasicAttack:
+                _animator.SetTrigger("Attack");
+                return;
+            case PlayerAnimState.ComboAttack:
+                _animator.SetBool("GoingIntoComboAttack", boolean);
+                return;
+
+            case PlayerAnimState.Hit:
+                _animator.SetTrigger("Hit");
+                return;
+
             default:
                 Debug.LogError("PlayerAnimationMachine: Invalid PlayerAnimState");
                 return;
@@ -59,13 +70,13 @@ public class PlayerAnimationMachine : MonoBehaviour
 
     public void KickUpDustRight(VisualEffect visualEffect)
     {
-        Instantiate(visualEffect, rightFoot.position, Quaternion.identity);
-        Destroy(visualEffect, 1.2f);
+        VisualEffect tmp = Instantiate(visualEffect, rightFoot.position, Quaternion.identity);
+        Destroy(tmp.gameObject, 1.2f);
     }
     public void KickUpDustLeft(VisualEffect visualEffect)
     {
-        Instantiate(visualEffect, leftFoot.position, Quaternion.identity);
-        Destroy(visualEffect, 1.2f);
+        VisualEffect tmp = Instantiate(visualEffect, leftFoot.position, Quaternion.identity);
+        Destroy(tmp.gameObject, 1.2f);
     }
 }
 
@@ -80,4 +91,7 @@ public enum PlayerAnimState
     LongDodge,
     AirDodge,
     IsWolfRunning,
+    BasicAttack,
+    ComboAttack,
+    Hit,
 }
