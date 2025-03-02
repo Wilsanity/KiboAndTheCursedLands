@@ -14,6 +14,8 @@ TagManager:
   - DamageZone3
   - DamageZone2
   - PlantEnemy2
+  - UIController
+  - RumbleVFX
   layers:
   - Default
   - TransparentFX
@@ -26,7 +28,8 @@ TagManager:
   - Player
   - Enemy
   - Hittable
-  - 
+  - Wall
+  - LockOnUI
   - 
   - 
   - 
