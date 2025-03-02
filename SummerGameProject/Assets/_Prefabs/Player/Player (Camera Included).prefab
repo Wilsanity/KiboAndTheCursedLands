@@ -132,6 +132,14 @@ PrefabInstance:
       propertyPath: hitSpot
       value: 
       objectReference: {fileID: 127045942}
+    - target: {fileID: 5795770302118775310, guid: 2140e0cbcfb025249a86229e9160288c, type: 3}
+      propertyPath: fistColliderL
+      value: 
+      objectReference: {fileID: 200520350568624806}
+    - target: {fileID: 5795770302118775310, guid: 2140e0cbcfb025249a86229e9160288c, type: 3}
+      propertyPath: fistColliderR
+      value: 
+      objectReference: {fileID: 3678644789025145691}
     - target: {fileID: 5795770302118775311, guid: 2140e0cbcfb025249a86229e9160288c, type: 3}
       propertyPath: m_Camera
       value: 
@@ -184,6 +192,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5795770302118775309, guid: 2140e0cbcfb025249a86229e9160288c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2227660055080736901}
+    - targetCorrespondingSourceObject: {fileID: 6678802719443372446, guid: 2140e0cbcfb025249a86229e9160288c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4721917043450048540}
+    - targetCorrespondingSourceObject: {fileID: 6576979635680059937, guid: 2140e0cbcfb025249a86229e9160288c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 200520350568624806}
+    - targetCorrespondingSourceObject: {fileID: 6751296715819151274, guid: 2140e0cbcfb025249a86229e9160288c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3678644789025145691}
   m_SourcePrefab: {fileID: 100100000, guid: 2140e0cbcfb025249a86229e9160288c, type: 3}
 --- !u!4 &6013794877321451354 stripped
 Transform:
@@ -280,6 +297,80 @@ MonoBehaviour:
   _ledgeGrabOffset: 0.5
   _ledgeMoveSpeed: 2
   _ledgeClimbUpSpeed: 3
+--- !u!1 &7563222631090878552 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6751296715819151274, guid: 2140e0cbcfb025249a86229e9160288c, type: 3}
+  m_PrefabInstance: {fileID: 3838362651016337394}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &3678644789025145691
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7563222631090878552}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.005
+  m_Height: 0.02
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &7632270747219615340 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6678802719443372446, guid: 2140e0cbcfb025249a86229e9160288c, type: 3}
+  m_PrefabInstance: {fileID: 3838362651016337394}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4721917043450048540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7632270747219615340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaaa1372968fe224ba0b5bf8708953ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerObj: {fileID: 7289687460479032831}
+--- !u!1 &7927103212438730195 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6576979635680059937, guid: 2140e0cbcfb025249a86229e9160288c, type: 3}
+  m_PrefabInstance: {fileID: 3838362651016337394}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &200520350568624806
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7927103212438730195}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.005
+  m_Height: 0.02
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &3838362651894494250
 PrefabInstance:
   m_ObjectHideFlags: 0
