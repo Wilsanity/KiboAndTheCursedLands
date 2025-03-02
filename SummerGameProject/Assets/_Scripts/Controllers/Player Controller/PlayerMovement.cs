@@ -272,23 +272,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!_playerClimbing.IsClimbing)
         IsGrounded = CheckGrounded();
-        //_animationStateMachine.UpdatePlayerAnim(PlayerAnimState.IsGrounded, IsGrounded);
-        //Set the NavMeshAgent destination using nma.SetDestination.
-        //if (_navMeshAgent.enabled) _navMeshAgent.SetDestination(transform.position + MoveInput);
-        MovePlayer();
-        bool isMoving = HasMoveInput && _rigidbody.velocity.magnitude > 0.1f;
-        _animationStateMachine.UpdatePlayerAnim(PlayerAnimState.IsMoving, isMoving);
 
         // if is wolf running (or charging up) check that conditions to continue are still true
         if(_isWolfRunning || _wolfRunWarmUp != null)
         {
             IsGrounded = CheckGrounded();
             _animationStateMachine.UpdatePlayerAnim(PlayerAnimState.IsGrounded, IsGrounded);
-            //Set the NavMeshAgent destination using nma.SetDestination.
-            //if (_navMeshAgent.enabled) _navMeshAgent.SetDestination(transform.position + MoveInput);
-            MovePlayer();
-            bool isMoving = HasMoveInput && _rigidbody.velocity.magnitude > 0.1f;
-            _animationStateMachine.UpdatePlayerAnim(PlayerAnimState.IsMoving, isMoving);
 
             // if is wolf running (or charging up) check that conditions to continue are still true
             if (_isWolfRunning || _wolfRunWarmUp != null)
@@ -297,9 +286,9 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-      
-
-
+        MovePlayer();
+        bool isMoving = HasMoveInput && _rigidbody.velocity.magnitude > 0.1f;
+        _animationStateMachine.UpdatePlayerAnim(PlayerAnimState.IsMoving, isMoving);
     }
 
     private void Update()
