@@ -263,8 +263,11 @@ public class PlayerMovement : MonoBehaviour
         //    jumpVFX.SetVector4("Color", baseJumpColor);
         //}
 
-        VisualEffect VE = Instantiate(jumpVFX, transform.position, Quaternion.identity);
-        Destroy(VE, 1);
+        if (jumpVFX != null)
+        {
+            VisualEffect VE = Instantiate(jumpVFX, transform.position, Quaternion.identity);
+            Destroy(VE, 1);
+        }
     }
 
     // updates

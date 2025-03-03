@@ -69,7 +69,8 @@ namespace Kibo.Data
         {
             GameData = new GameData();
 
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            GameManager.Instance.SceneManager.LoadSceneWithTransition(GameManager.Instance.SceneManager.currentSceneName, LoadSceneMode.Single);
         }
 
         public void SaveGame()

@@ -51,6 +51,10 @@ public class GameManager : AdvancedFSM
     [Tooltip("Tutorial Scene Name")]
     public string tutorialSceneName;
 
+    [SerializeField]
+    [Tooltip("Cave Scene Name")]
+    public string caveSceneName;
+
     public SceneObjects sceneObjects;
     private void Awake()
     {
