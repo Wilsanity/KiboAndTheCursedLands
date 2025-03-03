@@ -91,9 +91,9 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Lock In"",
+                    ""name"": ""Climb"",
                     ""type"": ""Button"",
-                    ""id"": ""4a2ebc13-36f4-4ae9-8ab8-306fb22de956"",
+                    ""id"": ""0f3c68f1-41f5-467c-92c8-5b8fef84efdc"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -201,7 +201,7 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""7f5d5090-d7de-4209-a6c4-6c8c0800a776"",
-                    ""path"": ""<Keyboard>/leftShift"",
+                    ""path"": ""<Keyboard>/leftAlt"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard And Mouse"",
@@ -233,12 +233,12 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""90da28dc-a295-4890-b948-7cdd356d6505"",
-                    ""path"": ""<Keyboard>/t"",
+                    ""id"": ""202ae53a-549b-44f8-b0e1-b9f786e6fb4d"",
+                    ""path"": ""<Keyboard>/c"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard And Mouse"",
-                    ""action"": ""Lock In"",
+                    ""groups"": """",
+                    ""action"": ""Climb"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -250,6 +250,107 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard And Mouse"",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""PlayerUI"",
+            ""id"": ""5175f1e8-2c6e-49eb-abe3-9ca235c42b62"",
+            ""actions"": [
+                {
+                    ""name"": ""Exit"",
+                    ""type"": ""Button"",
+                    ""id"": ""816b6ba0-0ff6-4c41-aff1-abbabb495b33"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""fe41c52a-441e-4aea-8a38-9c51ad0836a1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OptionSelect"",
+                    ""type"": ""Value"",
+                    ""id"": ""3bd63c02-ece0-4bf6-85c7-3db10dfe6df0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""e5d8a3a7-cfa2-4649-969d-26cddddaeaae"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5e377da7-cf65-45e8-bd92-816492a55ada"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c7b5d0a2-a231-4825-a23f-3ab4c2ad1d2c"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale"",
+                    ""groups"": """",
+                    ""action"": ""OptionSelect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dcb83f06-8e64-4cac-9f07-e36cb12c1c2f"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=2)"",
+                    ""groups"": """",
+                    ""action"": ""OptionSelect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0ba6603e-e340-47e9-9c80-3aa756f1889d"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=3)"",
+                    ""groups"": """",
+                    ""action"": ""OptionSelect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e9aa4b84-d76e-40d1-8f60-cee74da18067"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=4)"",
+                    ""groups"": """",
+                    ""action"": ""OptionSelect"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -284,8 +385,13 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
         m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
-        m_Player_LockIn = m_Player.FindAction("Lock In", throwIfNotFound: true);
+        m_Player_Climb = m_Player.FindAction("Climb", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        // PlayerUI
+        m_PlayerUI = asset.FindActionMap("PlayerUI", throwIfNotFound: true);
+        m_PlayerUI_Exit = m_PlayerUI.FindAction("Exit", throwIfNotFound: true);
+        m_PlayerUI_Select = m_PlayerUI.FindAction("Select", throwIfNotFound: true);
+        m_PlayerUI_OptionSelect = m_PlayerUI.FindAction("OptionSelect", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -354,7 +460,7 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Dodge;
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_Interact;
-    private readonly InputAction m_Player_LockIn;
+    private readonly InputAction m_Player_Climb;
     private readonly InputAction m_Player_Pause;
     public struct PlayerActions
     {
@@ -367,7 +473,7 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
         public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
-        public InputAction @LockIn => m_Wrapper.m_Player_LockIn;
+        public InputAction @Climb => m_Wrapper.m_Player_Climb;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -399,9 +505,9 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
-            @LockIn.started += instance.OnLockIn;
-            @LockIn.performed += instance.OnLockIn;
-            @LockIn.canceled += instance.OnLockIn;
+            @Climb.started += instance.OnClimb;
+            @Climb.performed += instance.OnClimb;
+            @Climb.canceled += instance.OnClimb;
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
@@ -430,9 +536,9 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
-            @LockIn.started -= instance.OnLockIn;
-            @LockIn.performed -= instance.OnLockIn;
-            @LockIn.canceled -= instance.OnLockIn;
+            @Climb.started -= instance.OnClimb;
+            @Climb.performed -= instance.OnClimb;
+            @Climb.canceled -= instance.OnClimb;
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
@@ -453,6 +559,68 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // PlayerUI
+    private readonly InputActionMap m_PlayerUI;
+    private List<IPlayerUIActions> m_PlayerUIActionsCallbackInterfaces = new List<IPlayerUIActions>();
+    private readonly InputAction m_PlayerUI_Exit;
+    private readonly InputAction m_PlayerUI_Select;
+    private readonly InputAction m_PlayerUI_OptionSelect;
+    public struct PlayerUIActions
+    {
+        private @GameControls m_Wrapper;
+        public PlayerUIActions(@GameControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Exit => m_Wrapper.m_PlayerUI_Exit;
+        public InputAction @Select => m_Wrapper.m_PlayerUI_Select;
+        public InputAction @OptionSelect => m_Wrapper.m_PlayerUI_OptionSelect;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerUI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PlayerUIActions set) { return set.Get(); }
+        public void AddCallbacks(IPlayerUIActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PlayerUIActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerUIActionsCallbackInterfaces.Add(instance);
+            @Exit.started += instance.OnExit;
+            @Exit.performed += instance.OnExit;
+            @Exit.canceled += instance.OnExit;
+            @Select.started += instance.OnSelect;
+            @Select.performed += instance.OnSelect;
+            @Select.canceled += instance.OnSelect;
+            @OptionSelect.started += instance.OnOptionSelect;
+            @OptionSelect.performed += instance.OnOptionSelect;
+            @OptionSelect.canceled += instance.OnOptionSelect;
+        }
+
+        private void UnregisterCallbacks(IPlayerUIActions instance)
+        {
+            @Exit.started -= instance.OnExit;
+            @Exit.performed -= instance.OnExit;
+            @Exit.canceled -= instance.OnExit;
+            @Select.started -= instance.OnSelect;
+            @Select.performed -= instance.OnSelect;
+            @Select.canceled -= instance.OnSelect;
+            @OptionSelect.started -= instance.OnOptionSelect;
+            @OptionSelect.performed -= instance.OnOptionSelect;
+            @OptionSelect.canceled -= instance.OnOptionSelect;
+        }
+
+        public void RemoveCallbacks(IPlayerUIActions instance)
+        {
+            if (m_Wrapper.m_PlayerUIActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IPlayerUIActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PlayerUIActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PlayerUIActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public PlayerUIActions @PlayerUI => new PlayerUIActions(this);
     private int m_KeyboardAndMouseSchemeIndex = -1;
     public InputControlScheme KeyboardAndMouseScheme
     {
@@ -471,7 +639,13 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
         void OnDodge(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
-        void OnLockIn(InputAction.CallbackContext context);
+        void OnClimb(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+    }
+    public interface IPlayerUIActions
+    {
+        void OnExit(InputAction.CallbackContext context);
+        void OnSelect(InputAction.CallbackContext context);
+        void OnOptionSelect(InputAction.CallbackContext context);
     }
 }
