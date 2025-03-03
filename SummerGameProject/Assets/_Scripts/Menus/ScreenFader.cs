@@ -19,6 +19,6 @@ public class ScreenFader : MonoBehaviour
 
     private void StartNewGame()
     {
-        SceneManager.LoadScene("Earth Tutorial");
+        ///SceneManager.LoadScene("Earth Tutorial");
     }
 }

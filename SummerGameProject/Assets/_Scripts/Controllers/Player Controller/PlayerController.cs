@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     PlayerAnimationMachine _playerAnimationMachine;
     PlayerAttack _attack;
     PlayerMovement _movement;
-    
+
 
     #region input actions
 
@@ -35,6 +35,15 @@ public class PlayerController : MonoBehaviour, IDamageable
     InputAction uiExit;
     InputAction uiOptionSelect;
     #endregion
+
+    // UI Handlers
+    private void AttackHandler(InputAction.CallbackContext ctx) => Attack();
+    private void JumpHandler(InputAction.CallbackContext ctx) => TryJump();
+    private void SprintStartedHandler(InputAction.CallbackContext ctx) { SetSprint(true); }
+    private void SprintHandler(InputAction.CallbackContext ctx) { SetSprint(false); }
+    private void InputUIHandler(InputAction.CallbackContext ctx) => inputUI();
+    private void ExitUIHandler(InputAction.CallbackContext ctx) => exitUI();
+    private void InputUIChoiceHandler(InputAction.CallbackContext ctx) => inputUIChoice();
 
     Animator anim;
     CapsuleCollider capsule;
@@ -50,7 +59,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     #region inspector
 
-    
+
     [SerializeField] Image healthBar;
 
 
@@ -112,16 +121,14 @@ public class PlayerController : MonoBehaviour, IDamageable
         uiOptionSelect = playerInput.actions["OptionSelect"];
 
 
-        attackAction.started += ctx => Attack();
-        jumpAction.performed += ctx => TryJump();
-        sprintAction.performed += ctx => SetSprint(true);
-        sprintAction.canceled += ctx => SetSprint(false);
-        //moveAction.performed += ctx => SetMoveInput(ctx);
+        attackAction.started += AttackHandler;
+        jumpAction.performed += JumpHandler;
+        sprintAction.started += SprintStartedHandler;
+        sprintAction.canceled += SprintHandler;
 
-        //Adding out UI actions here might be the play... 
-        uiContinue.performed += ctx => inputUI();
-        uiExit.performed += ctx => exitUI();
-        uiOptionSelect.performed += ctx => inputUIChoice();
+        uiContinue.performed += InputUIHandler;
+        uiExit.performed += ExitUIHandler;
+        uiOptionSelect.performed += InputUIChoiceHandler;
 
         #endregion
 
@@ -130,7 +137,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         capsule = GetComponent<CapsuleCollider>();
         body = GetComponent<Rigidbody>();
 
-        
+
         cameraFollowTargetTransform = transform.GetChild(0).transform;
 
         fistColliderL.enabled = false;
@@ -140,14 +147,14 @@ public class PlayerController : MonoBehaviour, IDamageable
         HandlePortalTeleport();
     }
 
-    
-
     private void OnEnable()
     {
         //single press button input notation. 
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        LoadPlayerData();
     }
 
     private void OnDisable()
@@ -155,7 +162,17 @@ public class PlayerController : MonoBehaviour, IDamageable
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
+        // Unsubscribe from events
+        attackAction.started -= AttackHandler;
+        jumpAction.performed -= JumpHandler;
+        sprintAction.started -= SprintStartedHandler;
+        sprintAction.canceled -= SprintHandler;
 
+        uiContinue.performed -= InputUIHandler;
+        uiExit.performed -= ExitUIHandler;
+        uiOptionSelect.performed -= InputUIChoiceHandler;
+
+        SavePlayerData();
     }
 
     private void Update()
@@ -165,7 +182,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
         if (health <= 0)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            OnPlayerDeath();
         }
 
         CheckFalling();
@@ -224,7 +241,7 @@ public class PlayerController : MonoBehaviour, IDamageable
             // if the player has not begin the pre-dodge coroutine, start it
             if (_movement.CanStartGroundDodge)
             {
-                
+
                 _movement.TryGroundDodge(_dodgeDoubleTapWindow);
             }
             // else, send the toggle to turn the dodge into a long dodge
@@ -248,8 +265,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         if (collision.gameObject.name == "PortalFX_V2")//TEMPORARY CODE: If the player collides with the portal, the cave scene starts.
         {
-            SceneTransitionController.Instance.LoadSpecificSceneString("Cave Scene");
-            //SceneManager.LoadScene("Cave Scene");
+            GameManager.Instance.SceneManager.LoadSceneWithTransition(GameManager.Instance.caveSceneName, LoadSceneMode.Single);
         }
     }
 
@@ -267,7 +283,7 @@ public class PlayerController : MonoBehaviour, IDamageable
             Debug.DrawRay(contact.point, contact.normal, Color.white);
         }
     }
-    
+
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground")) isGrounded = false;
@@ -281,15 +297,12 @@ public class PlayerController : MonoBehaviour, IDamageable
 
 
         //We need to check it to make sure we actually have an attached component which has iDamageable... & We check through the parents as well...
-        if (other.gameObject.TryGetComponent<IDamageable>(out temp) ||  other.GetComponentInParent<IDamageable>() != null)
+        if (other.gameObject.TryGetComponent<IDamageable>(out temp) || other.GetComponentInParent<IDamageable>() != null)
         {
-
-
             if (other.GetComponentInParent<IDamageable>() != null)
             {
                 DealDamage(other.transform.parent.gameObject, 1);
             }
-
         }
         else
         {
@@ -309,14 +322,12 @@ public class PlayerController : MonoBehaviour, IDamageable
         }
         else
         {
-
             UnitHealth temp = this.GetComponent<UnitHealth>();
             _playerAnimationMachine.UpdatePlayerAnim(PlayerAnimState.Hit);
             temp.DamageUnit(amount);
-
         }
 
-        
+
         /*
 
         if (healthBar != null)
@@ -375,16 +386,16 @@ public class PlayerController : MonoBehaviour, IDamageable
         target.GetComponent<IDamageable>().TakeDamage(this.gameObject, 1);
     }
 
-    
+
     public void Attack()
     {
         if (!readyToAttack) return;
 
 
-        if(attacking)
+        if (attacking)
         {
             //When the player clicks attack and they are within the combo attack window
-            if(canComboAttack)
+            if (canComboAttack)
             {
                 Debug.Log("Player Combo attack");
                 StartCoroutine(Attacking(PlayerAnimState.ComboAttack));
@@ -396,7 +407,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         }
 
         //otherwise do the regular attack
-        else if(!attacking)
+        else if (!attacking)
         {
             StartCoroutine(Attacking(PlayerAnimState.BasicAttack));
         }
@@ -424,7 +435,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         //The player has missed the combo attack window, make sure they cant start the attack again
         readyToAttack = false;
 
-        
+
         ResetAttack();
 
         yield break;
@@ -433,7 +444,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     //Reset 
     void ResetAttack()
     {
-        attacking = false; 
+        attacking = false;
         readyToAttack = true;
         canComboAttack = false;
         attackComboQueued = false;
@@ -452,13 +463,13 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         //So we don't get an error if we accidentally forget to assign the hitspot
         Transform startOfTransform = hitSpot != null ? hitSpot.transform : transform;
-        
+
         //Using the a gameobject and create a raycast from there
-        if(Physics.Raycast(startOfTransform.position , startOfTransform.forward, out RaycastHit hit, attackDistance))
+        if (Physics.Raycast(startOfTransform.position, startOfTransform.forward, out RaycastHit hit, attackDistance))
         {
 
             UnitHealth unitHealth = hit.transform.GetComponent<UnitHealth>();
-           
+
             if (unitHealth == null)
             {
                 //try getting their parent if the first one fails
@@ -501,8 +512,8 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void OnPlayerDeath()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        Destroy(gameObject);
+        GameManager.Instance.SceneManager.LoadSceneWithTransition(GameManager.Instance.SceneManager.currentSceneName, LoadSceneMode.Single);
+        health = GetComponent<UnitHealth>().MaxHealth;
     }
 
     // Debug and Stat Check
@@ -563,6 +574,24 @@ public class PlayerController : MonoBehaviour, IDamageable
         }
     }
 
+    private void LoadPlayerData()
+    {
+        if (GameManager.Instance != null && GameManager.Instance.playerData != null)
+        {
+            health = GameManager.Instance.playerData.health;
+
+            // Apply health to player UI, stats, etc.
+        }
+    }
+
+    private void SavePlayerData()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.SavePlayerData(health);
+        }
+    }
+
     //Shane's Edit
     private void SetInputContext(string contextName)
     {
@@ -571,11 +600,6 @@ public class PlayerController : MonoBehaviour, IDamageable
 
         playerInput.SwitchCurrentActionMap(contextName);
     }
-
-
-
-
-
 
     private void inputUIChoice()
     {
@@ -590,18 +614,15 @@ public class PlayerController : MonoBehaviour, IDamageable
         Debug.Log("Input ui called");
         //FindObjectOfType<DialogueManagerOLD>().SelectChoice(0);
 
-        
+
         //Needs to be updated to just jump to end of scrolling.
         FindObjectOfType<DialogueManager>().GoToNextSentence();
-
-
     }
 
 
     private Camera tempCamera;
     public void DialogueBegin()
     {
-
         //Swap our input, & enable camera specifics?
         SetInputContext("PlayerUI");
 
@@ -641,8 +662,6 @@ public class PlayerController : MonoBehaviour, IDamageable
         */
 
     }
-
-
     private IEnumerator CameraLerp(Vector3 originLoc, Vector3 desiredLoc, float duration)
     {
         float time = 0.0f;
@@ -657,8 +676,6 @@ public class PlayerController : MonoBehaviour, IDamageable
         tempCamera.transform.position = desiredLoc;
     }
 
-
-
     public void DialogueEnd()
     {
         SetInputContext("Player");
@@ -666,21 +683,19 @@ public class PlayerController : MonoBehaviour, IDamageable
 
         //StopAllCoroutines();
         //Before destroying camera kill our co-routine.
-        
-        
+
+
         GameObject[] tmp = GameObject.FindGameObjectsWithTag("MainCamera");
 
         //WIP
         //StartCoroutine(CameraLerp(tempCamera.transform.position, tmp[0].transform.position, 5.0f));
-        
+
 
         //Destroy after our Coroutine has ran it's course.
         //Destroy(tempCamera.gameObject, 6.0f);
 
 
     }
-
-
     private void exitUI()
     {
         //Only used when escape is pressed.
@@ -693,8 +708,6 @@ public class PlayerController : MonoBehaviour, IDamageable
 
 
     }
-    
-
 
     // legacy code
     //This is when the player attacks the cave plant enemies. This is a temporary solution since using an array caused them collectively to die
@@ -706,11 +719,8 @@ public class PlayerController : MonoBehaviour, IDamageable
     //    if(other.gameObject.GetComponent<Interactable>())
     //    {
     //    }
-        
+
     //}
-
-
-
 
     //private void OnTriggerEnter(Collider other)
     //{
@@ -806,7 +816,4 @@ public class PlayerController : MonoBehaviour, IDamageable
     //    yield return new WaitForSeconds(0.1f);
 
     //    jumpOnCoolDown = false;
-
-
-
 }

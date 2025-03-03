@@ -20,7 +20,7 @@ public class Portal : Interactable
     public string PortalID
     {
         // will return the portal ID
-        get { return (int)worldType + "_" + portalIndex + "_" + SceneManager.GetActiveScene().name + "_" + gameObject.name; }
+        get { return (int)worldType + "_" + portalIndex + "_" + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name + "_" + gameObject.name; }
     }
     
     public WorldType worldType;
@@ -35,7 +35,7 @@ public class Portal : Interactable
         IEnumerator PortalInitCoolDown()
         {
             initOnCooldown = true;
-            SceneManager.LoadSceneAsync("Portal UI", LoadSceneMode.Additive);
+            GameManager.Instance.SceneManager.LoadScene("Portal UI", LoadSceneMode.Additive);
             yield return new WaitForSeconds(1);
 
             initOnCooldown = false;

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
-    //specific scenes for loading.
+    /*//specific scenes for loading.
     #region
     [SerializeField]
     private Object creditsScene;
@@ -32,7 +32,7 @@ public class MainMenuManager : MonoBehaviour
 
         if (levelOneScene != null)
         {
-            SceneManager.LoadScene(levelOneScene.name);
+            ///SceneManager.LoadScene(levelOneScene.name);
         }
         else
         {
@@ -49,7 +49,7 @@ public class MainMenuManager : MonoBehaviour
 
         if (lastLocation != null)
         {
-            SceneManager.LoadScene(lastLocation.name);
+            ///SceneManager.LoadScene(lastLocation.name);
         }
         else
         {
@@ -80,7 +80,7 @@ public class MainMenuManager : MonoBehaviour
 
         if (lastLocation != null)
         {
-            SceneManager.LoadScene(lastLocation.name);
+            ///SceneManager.LoadScene(lastLocation.name);
         }
         else
         {
@@ -127,7 +127,7 @@ public class MainMenuManager : MonoBehaviour
 
         if (creditsScene != null)
         {
-            SceneManager.LoadScene(creditsScene.name, LoadSceneMode.Single);
+            ///SceneManager.LoadScene(creditsScene.name, LoadSceneMode.Single);
         }
         else
         {
@@ -143,5 +143,5 @@ public class MainMenuManager : MonoBehaviour
     public void StartGame()
     {
         SceneTransitionController.Instance.LoadSpecificSceneBuildIndex(1);
-    }
+    }*/
 }

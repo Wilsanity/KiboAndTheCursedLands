@@ -9,7 +9,7 @@ public class LoadMenuManager : MonoBehaviour
     [SerializeField] GameObject contentWindow;
     private PlayerSaveFileData[] saveFiles;
 
-    [SerializeField] MainMenuManager mainMenuManager;
+    ///[SerializeField] MainMenuManager mainMenuManager;
 
     public void fill_Window_With_Data()
     {
@@ -26,7 +26,7 @@ public class LoadMenuManager : MonoBehaviour
             //fill prefab
             newForm.GetComponentInChildren<RawImage>().texture = currentFile.saveScreenshot; // find way to do this with an image like yo can in the editor
             newForm.GetComponentInChildren<Slider>().value = currentFile.gameProgressPercentage;
-            newForm.GetComponent<Button>().onClick.AddListener(() => mainMenuManager.load_Game(currentFile));
+            ///newForm.GetComponent<Button>().onClick.AddListener(() => mainMenuManager.load_Game(currentFile));
             //fill multiple text fields.
         }
     }

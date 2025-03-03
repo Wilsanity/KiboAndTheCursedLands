@@ -5,18 +5,16 @@ using UnityEngine.UI;
 
 public class GM_StartState :  FSMState
 {
-    private Slider slider;
     private SceneObjects _sceneObjects;
 
     // Constructor
-    public GM_StartState(Slider inSlider, SceneObjects sceneObjects)
+    public GM_StartState(SceneObjects sceneObjects)
     {
         stateType = FSMStateType.Start;
-        slider = inSlider;
 
         _sceneObjects = sceneObjects;
 
-        EnterStateInit();
+        //EnterStateInit();
     }
 
 
@@ -43,22 +41,7 @@ public class GM_StartState :  FSMState
 
     public override void Reason(Transform player, Transform gm)
     {
-        switch (slider.value)
-        {
-            case 1:
-                break;
-            case 2:
-                gm.GetComponent<GameManager>().PerformTransition(TransitionType.Playing);
-                break;
-            case 3:
-                gm.GetComponent<GameManager>().PerformTransition(TransitionType.Pausing);
-                break;
-            case 4:
-                gm.GetComponent<GameManager>().PerformTransition(TransitionType.Ending);
-                break;
-            default:
-                break;
-        }
+
     }
 
     public override void Act(Transform player, Transform npc)

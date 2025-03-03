@@ -16,6 +16,7 @@ public enum FSMStateType
     Dead,
 
     // Game Manager States
+    MainMenu,
     Start,
     Pause,
     End,
@@ -52,6 +53,7 @@ public enum TransitionType
     NoHealth,
 
     // Game Manager Transitions
+    MainMenu,
     Starting,
     Playing,
     Pausing,
