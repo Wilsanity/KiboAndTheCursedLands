@@ -205,7 +205,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 378638266}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99997944
   m_NumberOfSteps: 2
   m_OnValueChanged:
     m_PersistentCalls:
@@ -911,7 +911,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00022961208}
+  m_AnchoredPosition: {x: 0, y: 0.000051544648}
   m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &249763565
@@ -2428,6 +2428,7 @@ MonoBehaviour:
   savedGamesGroup: {fileID: 595550200}
   creditSceneName: Credits_Scene
   tutorialSceneName: NEWTutorial
+  caveSceneName: Cave Scene
   sceneObjects:
     player: {fileID: 0}
     testCube: []
@@ -7634,7 +7635,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.51500005, y: 0.22444446}
   m_AnchorMax: {x: 0.78375, y: 0.34444442}
-  m_AnchoredPosition: {x: 0.019989014, y: 6.460083}
+  m_AnchoredPosition: {x: 0.019989014, y: 6.4601135}
   m_SizeDelta: {x: -1.3600111, y: 15.920002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2069190459
